@@ -3,7 +3,28 @@
 <head>
 	<title></title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css">
+	<style type="text/css">
+		div.DISPONIBLE{
+			background-color: white;
+		}
+
+		td:hover div.DISPONIBLE{
+			background-color: #BCF5A9;
+		}
+
+		div.APARTADO{
+			background-color: yellow;
+		}
+
+		div.OCUPADO{
+			background-color: red;
+		}
+
+		div.PASADO{
+			background-color: gray;
+		}
+
+	</style>
 </head>
 <body onload="calendarioFunction()">
 	<center>
@@ -55,7 +76,7 @@
 	<script>
 				function calendarioFunction() {
 					$.ajax({
-						url: "calendar.php",
+						url: "scripts/calendar.php",
 					    type: "POST",
 					    data: {"mes" : $('#monthVal').html() , "anio" : $('#yearVal').html()},
 					    success: function(response) {
@@ -95,7 +116,8 @@
 
 				}
 				function fechaClickeada(fecha){
-					alert(fecha);
+					top.frames[0].location.reload();
+					top.frames[1].location.href="./confirmDate/index.php?date="+fecha;
 				}
 	</script>
 	
