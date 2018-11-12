@@ -18,7 +18,7 @@
 			top.location.href="./";
 		}
 		function historial(){
-			top.location.href="./";
+			top.frames[1].location.href="./historial/";
 		}
 		function login(){
 			top.frames[1].location.href="./Sesion/iniciosesion.php";
@@ -39,7 +39,7 @@
 						<a class="nav-link float-right" style="color: #000000;"> <?php echo "$usuario" ;?></a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="closeSession()">Cerrar Sesion</a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#">Mis Fechas</a>
-						<a class="nav-link float-right" style="color: #ffffff;" href="#">Historial</a>
+						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="historial()">Historial</a>
 						
       				<?php
 					}else{
