@@ -13,7 +13,7 @@ include_once '../scripts/BDConnect.php';
         <table align='center' border="0">
             <tr height='50'>
                 <td colspan='2' align='center'>
-                    <b> Agregando Registros de Alumnos </b>
+                    <b> Agregando Registros de Usuarios </b>
                     <input type='hidden' id='txtOpc' name='txtOpc' value='add'>
                     <input type='hidden' id='txttipo' name='txttipo' value='N'>
                 </td>
