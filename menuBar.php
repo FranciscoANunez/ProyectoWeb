@@ -15,7 +15,7 @@
 			top.location.href="./Sesion/cerrarSesion.php";	
 		}
 		function misFechas(){
-			top.location.href="./";
+			top.frames[1].location.href="./subirRecibo/";
 		}
 		function historial(){
 			top.frames[1].location.href="./historial/";
@@ -41,7 +41,7 @@
 					?>
 						<a class="nav-link float-right" style="color: #000000;"> <?php echo "$usuario" ;?></a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="closeSession()">Cerrar Sesion</a>
-						<a class="nav-link float-right" style="color: #ffffff;" href="#">Mis Fechas</a>
+						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="misFechas()">Mis Fechas</a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="historial()">Historial</a>
 						
       				<?php

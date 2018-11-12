@@ -49,6 +49,7 @@
 
 						      		}else{
 						      			echo "class=\"btn btn-outline-info\"";
+						      			echo "onclick=\"subirArchivo()\"";
 						      		}
 						      	?>> Subir Recibo </button> </th>
 		      				</tr>
@@ -67,5 +68,10 @@
 </table>
 	<script type="text/javascript" src="../js/jQuery.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<script>
+		function subirRecibo(){
+			top.frames[1].location.href="./subir.php";
+		}
+	</script>
 </body>
 </html>
