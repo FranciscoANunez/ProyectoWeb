@@ -20,6 +20,9 @@
 		function historial(){
 			top.location.href="./";
 		}
+		function login(){
+			top.frames[1].location.href="./Sesion/iniciosesion.php";
+		}
 	</script>
 </head>
 <body>
@@ -41,7 +44,7 @@
       				<?php
 					}else{
 					?>
-						<a class="nav-link float-right" style="color: #ffffff;"href="#">Log In</a>
+						<a class="nav-link float-right" style="color: #ffffff;"href="#" onclick="login()">Log In</a>
       					<a class="nav-link float-right" style="color: #ffffff;"href="#">Sign In</a>	
       				<?php
 					}
