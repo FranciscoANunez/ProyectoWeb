@@ -25,11 +25,8 @@ $correo=$conn->real_escape_string($_POST['txtCorreo']);
          echo ("$strQry");
          die ('Error: no se ejecuta');
      }
-<<<<<<< HEAD
      echo "<script type='text/javascript'> top.location.href='../index.php';</script>";
-=======
      //echo "<script type='text/javascript'> window.location.href='../index.php';</script>";
->>>>>>> 3d79d5647c370c4774aa1f271aaa4c7542267bae
      break;
      
 }
