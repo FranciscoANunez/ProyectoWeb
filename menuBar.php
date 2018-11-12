@@ -24,7 +24,7 @@
 			top.frames[1].location.href="./Sesion/iniciosesion.php";
 		}
 		function signin(){
-			top.frames[1].location.href="./Usuarios/addUsuarios";
+			top.frames[1].location.href="./Usuarios/addUsuario.php";
 		}
 	</script>
 </head>
@@ -48,7 +48,7 @@
 					}else{
 					?>
 						<a class="nav-link float-right" style="color: #ffffff;"href="#" onclick="login()">Log In</a>
-      					<a class="nav-link float-right" style="color: #ffffff;"href="#">Sign In</a>	
+      					<a class="nav-link float-right" style="color: #ffffff;"href="#" onclick="signin()">Sign In</a>	
       				<?php
 					}
 				?>
