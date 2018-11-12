@@ -1,4 +1,7 @@
 <?php  
+	include_once "BDConnect.php";
+	include_once "consultaDia.php";
+
 	$mes=$_POST['mes'];
 	$anioNumero=$_POST['anio'];
 
@@ -54,14 +57,63 @@
 							$contadorDeDias 
 							</td>";						
 					}else{
-						echo "onmouseover='javascript: this.bgColor=\"#BCF5A9\"; this.style.cursor=\"hand\";'
+
+						$eventoClick = "onmouseover='javascript: this.bgColor=\"#BCF5A9\"; this.style.cursor=\"hand\";'
 										onmouseout='javascript:this.bgColor=\"#FFFFFF\"; this.style.cursor=\"default\";'
-										onclick='fechaClickeada($contadorDeDias+\"-\"+$mes+\"-\"+$anioNumero);'>
-							<div class=\"DISPONIBLE\">&nbsp;</div>
-							<div class=\"DISPONIBLE\">&nbsp;</div>
-							<div class=\"DISPONIBLE\">&nbsp;</div>
-							$contadorDeDias
-							</td>";
+						onclick='fechaClickeada($contadorDeDias+\"-\"+$mes+\"-\"+$anioNumero);'";
+
+						$conta=0;
+						$diaEstatus="";
+						$tardeEstatus="";
+						$nocheEstatus="";
+
+						$esta=checaDia("$anioNumero-$mes-$contadorDeDias",'d');
+						switch ($esta) {
+							case 'D':
+								$diaEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
+							break;
+							case 'A':
+								$diaEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$conta++;
+							break;
+							case 'O':
+								$diaEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$conta++;
+							break;
+						}
+						$esta=checaDia("$anioNumero-$mes-$contadorDeDias",'t');
+						switch ($esta) {
+							case 'D':
+								$tardeEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
+							break;
+							case 'A':
+								$tardeEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$conta++;
+							break;
+							case 'O':
+								$tardeEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$conta++;
+							break;
+						}
+						$esta=checaDia("$anioNumero-$mes-$contadorDeDias",'n');
+						switch ($esta) {
+							case 'D':
+								$nocheEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
+							break;
+							case 'A':
+								$nocheEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$conta++;
+							break;
+							case 'O':
+								$nocheEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$conta++;
+							break;
+						}
+
+						if($conta==3){
+							$eventoClick="";
+						}
+						echo "$eventoClick > $diaEstatus $tardeEstatus $nocheEstatus $contadorDeDias </td>";
 					}
 
 					
@@ -86,14 +138,62 @@
 							$contadorDeDias
 							</td>";						
 					}else{
-						echo "onmouseover='javascript: this.bgColor=\"#BCF5A9\"; this.style.cursor=\"hand\";'
+						$eventoClick = "onmouseover='javascript: this.bgColor=\"#BCF5A9\"; this.style.cursor=\"hand\";'
 										onmouseout='javascript:this.bgColor=\"#FFFFFF\"; this.style.cursor=\"default\";'
-										onclick='fechaClickeada($contadorDeDias+\"-\"+$mes+\"-\"+$anioNumero);'>
-							<div class=\"DISPONIBLE\">&nbsp;</div>
-							<div class=\"DISPONIBLE\">&nbsp;</div>
-							<div class=\"DISPONIBLE\">&nbsp;</div>
-							$contadorDeDias
-							</td>";
+						onclick='fechaClickeada($contadorDeDias+\"-\"+$mes+\"-\"+$anioNumero);'";
+
+						$conta=0;
+						$diaEstatus="";
+						$tardeEstatus="";
+						$nocheEstatus="";
+
+						$esta=checaDia("$anioNumero-$mes-$contadorDeDias",'d');
+						switch ($esta) {
+							case 'D':
+								$diaEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
+							break;
+							case 'A':
+								$diaEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$conta++;
+							break;
+							case 'O':
+								$diaEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$conta++;
+							break;
+						}
+						$esta=checaDia("$anioNumero-$mes-$contadorDeDias",'t');
+						switch ($esta) {
+							case 'D':
+								$tardeEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
+							break;
+							case 'A':
+								$tardeEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$conta++;
+							break;
+							case 'O':
+								$tardeEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$conta++;
+							break;
+						}
+						$esta=checaDia("$anioNumero-$mes-$contadorDeDias",'n');
+						switch ($esta) {
+							case 'D':
+								$nocheEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
+							break;
+							case 'A':
+								$nocheEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$conta++;
+							break;
+							case 'O':
+								$nocheEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$conta++;
+							break;
+						}
+
+						if($conta==3){
+							$eventoClick="";
+						}
+						echo "$eventoClick > $diaEstatus $tardeEstatus $nocheEstatus $contadorDeDias </td>";
 					}
 							$contadorDeDias++;	
 						}

@@ -7,6 +7,20 @@
 	<title></title>
 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript">
+		function loadIndex(){
+			top.location.href="./";
+		}
+		function closeSession(){
+			top.location.href="./Sesion/cerrarSesion.php";	
+		}
+		function misFechas(){
+			top.location.href="./";
+		}
+		function historial(){
+			top.location.href="./";
+		}
+	</script>
 </head>
 <body>
 	<!-- NavBar la de arrriba-->
@@ -15,12 +29,14 @@
 			<a class="navbar-brand" onclick="loadIndex()" href="#">Home</a> 	
 			<div class="float-right" >
 				<?php
+
 					if(isset($_SESSION['user'])){
+						$usuario=$_SESSION['user'];
 					?>
-						<a class="nav-link float-right" style="color: #000000;"> <?php echo "$_SESSION[user]" ;?></a>
-						<a class="nav-link float-right" style="color: #ffffff;"href="#" onclick="closeSession()">Cerrar Sesion</a>
-						<a class="nav-link float-right" style="color: #ffffff;"href="#">Mis Fechas</a>
-						<a class="nav-link float-right" style="color: #ffffff;"href="#">Historial</a>
+						<a class="nav-link float-right" style="color: #000000;"> <?php echo "$usuario" ;?></a>
+						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="closeSession()">Cerrar Sesion</a>
+						<a class="nav-link float-right" style="color: #ffffff;" href="#">Mis Fechas</a>
+						<a class="nav-link float-right" style="color: #ffffff;" href="#">Historial</a>
 						
       				<?php
 					}else{
@@ -42,20 +58,7 @@
 	<script type="text/javascript" src="js/jQuery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/popper.min.js"></script>
-	<script type="text/javascript">
-		function loadIndex(){
-			top.location.href="./";
-		}
-		function closeSession(){
-			top.location.href="./Sesion/cerrarSesion.php";	
-		}
-		function misFechas(){
-			top.location.href="":
-		}
-		function historial(){
-			top.location.href="":
-		}
-	</script>
+	
 	
 	
 </body>
