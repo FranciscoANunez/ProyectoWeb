@@ -23,6 +23,9 @@
 		function login(){
 			top.frames[1].location.href="./Sesion/iniciosesion.php";
 		}
+		function signin(){
+			top.frames[1].location.href="./Usuarios/addUsuarios";
+		}
 	</script>
 </head>
 <body>
