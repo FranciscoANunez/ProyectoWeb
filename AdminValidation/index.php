@@ -22,11 +22,12 @@
 	<table class="table table-striped ">
   		<thead class="thead-dark">
     		<tr>
-      			<th scope="col">Fecha</th>
-			    <th scope="col">Estatus</th>
+      			<th scope="col">Cliente</th>
+			    <th scope="col">Fecha</th>
 			    <th scope="col">Horario</th>
-			    <th scope="col">Subir Recibo</th>
-			    <th scope="col">Cancelar</th>
+			    <th scope="col">Ver Recibo</th>
+			    <th scope="col">Validar</th>
+			    <th scope="col">Rechazar</th>
     		</tr>
   		</thead>
   		<tbody>

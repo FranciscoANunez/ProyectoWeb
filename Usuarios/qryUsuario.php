@@ -28,6 +28,9 @@ $correo=$conn->real_escape_string($_POST['txtCorreo']);
     $_SESSION['user']=$usuario;
     $_SESSION['type']=$tipo;
     $_SESSION['mail']=$correo;
+    if (!file_exists('../imgRecibos/'.$usuario)) {
+        mkdir('../imgRecibos/'.$usuario, 0777, true);
+    }
      echo "<script type='text/javascript'> top.location.href='../';</script>";
      break;
      
