@@ -26,13 +26,14 @@
 			    <th scope="col">Estatus</th>
 			    <th scope="col">Horario</th>
 			    <th scope="col">Subir Recibo</th>
+			    <th scope="col">Cancelar</th>
     		</tr>
   		</thead>
   		<tbody>
   			<?php
   				$dia=date("Y-n-d");
   				$user=$_SESSION['user'];
-  				$strQuery="SELECT dia,estatus,idTurno,recibo FROM rentas WHERE dia >= '$dia' AND usuario = '$user'";
+  				$strQuery="SELECT dia,estatus,idTurno,recibo,idRenta FROM rentas WHERE dia >= '$dia' AND usuario = '$user'";
 				$result=$conn->query($strQuery);
 
 				if($result->num_rows>0){
@@ -42,16 +43,23 @@
 		      					<th scope="row"><?php echo "$row[0]"; ?></th>
 		      					<th><?php echo "$row[1]"; ?></th>
 						      	<th><?php echo "$row[2]"; ?></th>
-						      	<th> <button type="button" <?php 
-						      		if(is_null($row[3])){
-						      			echo "class=\"btn btn-outline-secondary\"";
-						      			echo "disabled";
-
-						      		}else{
-						      			echo "class=\"btn btn-outline-info\"";
-						      			echo "onclick=\"subirArchivo()\"";
-						      		}
-						      	?>> Subir Recibo </button> </th>
+						      	<th> 
+						      		<?php
+						      			$botonValue="Subir";
+						      			if(is_null($row[3])){
+						      				$botonValue="Cambiar";
+						      			}
+						      		?>
+						      		<form action="subirImagen.php" method="POST">
+						      			<input type="hidden" name="txtRentaId" value="<?php echo "$row[4]"; ?>">
+						      			<input type="file" name="subir" value="subir" class="btn btn-outline-info" accept="image/gif, image/jpeg, image/png">
+						      			<input type="submit" name="btnsubir" value="<?php echo "$botonValue"; ?>">
+						      		</form>
+						      	</th>
+						      	
+						      	
+						      	
+						      	<th> <button type="button" class="btn btn-outline-danger" >Cancelar</button></th>
 		      				</tr>
 						<?php
 					}
@@ -59,7 +67,7 @@
 				}else{
 					?>
 						<tr>
-		      				<th scope="row" colspan="3">Sin rentas previas</th>
+		      				<th scope="row" colspan="5">Sin rentas pendientes</th>
 		      		    </tr>
 					<?php
 				}

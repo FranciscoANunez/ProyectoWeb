@@ -18,11 +18,18 @@ $correo=$conn->real_escape_string($_POST['txtCorreo']);
      values 
      ('$usuario','$contra','$tipo','$correo')";
 
+    
+
      if(!$conn->query($strQry)){
          echo ("$strQry");
          die ('Error: no se ejecuta');
      }
-     //echo "<script type='text/javascript'> window.location.href='../index.php';</script>";
+    session_start();
+    $_SESSION['user']=$usuario;
+    $_SESSION['type']=$tipo;
+    $_SESSION['mail']=$correo;
+     echo "<script type='text/javascript'> top.location.href='../';</script>";
      break;
      
 }
+?>
