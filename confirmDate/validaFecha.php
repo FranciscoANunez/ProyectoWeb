@@ -8,7 +8,7 @@
 	$usuario=$_SESSION['user'];
 
 
-	$strQuery="INSERT INTO rentas VALUES(NULL,'$usuario','$fecha','A','',NULL,'$turno')";
+	$strQuery="INSERT INTO rentas VALUES(NULL,'$usuario','$fecha','A',NULL,NULL,'$turno')";
 	
 	$result=$conn->query($strQuery);
 
