@@ -21,8 +21,7 @@ $correo=$conn->real_escape_string($_POST['txtCorreo']);
     
 
      if(!$conn->query($strQry)){
-         echo ("$strQry");
-         die ('Error: no se ejecuta');
+         die ('Error: Usuario ya existe');
      }
     session_start();
     $_SESSION['user']=$usuario;

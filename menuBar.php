@@ -26,6 +26,9 @@
 		function signin(){
 			top.frames[1].location.href="./Usuarios/addUsuario.php";
 		}
+		function validarRentas(){
+			top.frames[1].location.href="./AdminValidation/";	
+		}
 	</script>
 </head>
 <body>
@@ -43,12 +46,16 @@
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="closeSession()">Cerrar Sesion</a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="misFechas()">Mis Fechas</a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="historial()">Historial</a>
-						
       				<?php
+      					if($_SESSION['type']=='A'){
+      						?>
+      							<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="validarRentas()">Validar Rentas</a>		
+      						<?php
+      					}
 					}else{
 					?>
-						<a class="nav-link float-right" style="color: #ffffff;"href="#" onclick="login()">Log In</a>
-      					<a class="nav-link float-right" style="color: #ffffff;"href="#" onclick="signin()">Sign In</a>	
+						<a class="nav-link float-right" style="color: #ffffff;"href="#" onclick="login()">Ingresa</a>
+      					<a class="nav-link float-right" style="color: #ffffff;"href="#" onclick="signin()">Registra</a>	
       				<?php
 					}
 				?>

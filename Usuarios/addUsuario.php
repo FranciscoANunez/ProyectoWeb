@@ -8,7 +8,7 @@ include_once '../scripts/BDConnect.php';
             Agregar un usuario
         </title>
     </head>
-    <body onLoad="javascript:document.getElementById('txtNoControl').focus()">
+    <body onLoad="javascript:document.getElementById('txtNombre').focus()">
         <form id='frmAddUsuario' name='frmAddUsuario' action='./qryUsuario.php' method='POST'>
         <table align='center' border="0">
             <tr height='50'>
@@ -51,29 +51,37 @@ include_once '../scripts/BDConnect.php';
                 <td colspan='2' align='center'><input type='button' id='btnRegresar' name='btnRegresar' value='Regresar' style='width: 100px' onclick="javascript: window.location.href='./index.php'">
                 </td>
             </tr>
-            <tr height="60 px">
-                <td colspan="2">
-                    <font color="red">
-                        <div id="msgError">
-                        </div>
-                    </font>
-                </td>
-            </tr>
+            </table>
+                <table align="center">
+                    <tr height="60 px">
+                        <td colspan="2">
+                            <font color="red">
+                                <div id="msgError"></div>    
+                            </font>
+                        </td>
+                    </tr>
                 </table>
                 </form>
-                <script type="text/javascript" src="../js/jquery.js"></script>
+                <script type="text/javascript" src="../js/jQuery.js"></script>
                 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
                 <script type="text/javascript">
                 function validaForma(){
-                    $("#frmAddAlumnos").validate({
+                    $("#frmAddUsuario").validate({
                         rules: {txtContrasena:"required",
                                 txtNombre: "required",
-                                txtCorreo: "required",
+                                txtCorreo: "required"},
                          messages: {txtContrasena:"Se requiere este dato",
                                 txtNombre: "Se requiere este dato",
-                                txtCorreo: "Se requiere este dato",
+                                txtCorreo: "Se requiere este dato"},
                             submitHandler: function(form){
-                                $.ajax({url: frmAddUsuario.action , type: frmAddUsuario.method , data: $(form).serialize(), success: function(response) {$('#msgError').html(response);}});
+                                $.ajax({
+                                    url: frmAddUsuario.action, 
+                                    type: frmAddUsuario.method, 
+                                    data: $(form).serialize(),
+                                    success: function(response) {
+                                        $('#msgError').html(response);
+                                    }
+                                });
                             }
                     });
                 }

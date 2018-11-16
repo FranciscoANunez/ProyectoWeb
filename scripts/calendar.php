@@ -12,7 +12,7 @@
 	$dayBeg=date("w", $fecha);
 
 	?>
-		<table id="calendar" border="1" align="center" style="width: 80%;">
+		<table id="calendar" border="1" align="center" style="width: 70%; font-size: 10px;" >
 			<tr id="month">
 				<th style="text-align: center; " onclick="mesAtras()"> < </th>
 				<th colspan="5" style="text-align: center;">
@@ -205,5 +205,5 @@
 			?>
 
 		</table>
-
+		<?php
 ?>
