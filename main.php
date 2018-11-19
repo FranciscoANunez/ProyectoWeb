@@ -14,14 +14,17 @@
 
 		div.APARTADO{
 			background-color: yellow;
+			color: black;
 		}
 
 		div.OCUPADO{
 			background-color: red;
+			color: black;
 		}
 
 		div.PASADO{
 			background-color: gray;
+			color: black;
 		}
 
 	</style>

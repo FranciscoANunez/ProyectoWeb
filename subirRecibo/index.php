@@ -23,6 +23,11 @@
   		<thead class="thead-dark">
     		<tr>
       			<th scope="col">Fecha</th>
+      			<?php
+	      			if($_SESSION['type']=='A'){
+	  					echo "<th scope=\"col\">Cliente</th>";
+	  				}
+  				?>
 			    <th scope="col">Estatus</th>
 			    <th scope="col">Horario</th>
 			    <th scope="col">Subir Recibo</th>
@@ -33,7 +38,10 @@
   			<?php
   				$dia=date("Y-n-d");
   				$user=$_SESSION['user'];
-  				$strQuery="SELECT dia,estatus,idTurno,recibo,idRenta FROM rentas WHERE dia >= '$dia' AND usuario = '$user'";
+  				$strQuery="SELECT dia,estatus,idTurno,recibo,idRenta,usuario FROM rentas WHERE dia >= '$dia'";
+  				if($_SESSION['type']!='A'){
+  						$strQuery+="AND usuario = '$user'";
+  				}
 				$result=$conn->query($strQuery);
 
 				if($result->num_rows>0){
@@ -41,6 +49,11 @@
 						?>
 							<tr>
 		      					<th scope="row"><?php echo "$row[0]"; ?></th>
+		      					<?php
+		      						if($_SESSION['type']=='A'){
+  										echo "<th scope=\"row\"> $row[5] </th>";
+  									}
+		      					?>
 		      					<th><?php if($row[1]=='A'){echo "Apartado";}else{ echo "Pagado";}; ?></th>
 						      	<th><?php switch($row[2]){
 						      		case 'd':
@@ -69,20 +82,19 @@
 						      			<input type="hidden" name="txtRentaName" value="<?php echo "$row[0]-$row[2]"; ?>">
 						      			<?php
 						      				$botonValue="Subir";
-						      				if(is_null($row[3])){
+						      				if($row[5] == $_SESSION['user']){
+						      					if(is_null($row[3]) ){
 							      				?>
 							      					<input type="file" name="image" class="btn btn-outline-info" accept="image/gif, image/jpeg, image/png">
 							      					<input type="submit" name="btnsubir" value="<?php echo "$botonValue"; ?>">
 							      				<?php		
-							      			}else{
-							      				?>
-							      				<input type="button" class="btn btn-outline-secondary" value="Recibo Capturado" disabled>
-							      				<?php
-							      			}
+								      			}else{
+								      				?>
+								      				<input type="button" class="btn btn-outline-secondary" value="Recibo Capturado" disabled>
+								      				<?php
+								      			}
+						      				}
 						      			?>
-
-						      			
-						      			
 						      		</form>
 						      	</th>
 						      		<?php  
@@ -91,9 +103,12 @@
 						      			
 						      			$extra="";
 						      			
-						      			if($dia-86400 <= $diaHoy){
-						      				$extra="disabled";
+						      			if($_SESSION['type']!='A'){
+						      				if($dia-86400 <= $diaHoy){
+						      					$extra="disabled";
+						      				}
 						      			}
+						      			
 						      		?>
 						      	
 						      	

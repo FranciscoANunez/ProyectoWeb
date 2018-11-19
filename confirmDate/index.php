@@ -41,7 +41,7 @@
 <head>
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body onload="clickOpcion()">
 	
 
 	<form id="formConfirm" action="validaFecha.php?date=$fecha" method="POST">
@@ -56,7 +56,7 @@
 			<tr>
 				<td>Horario</td>
 				<td>
-					<select name="selectTurno" style="width: 100%">
+					<select id="selectTurno" name="selectTurno" style="width: 100%" onchange="clickOpcion()">
 						<?php
 							$estatusDia=checaDia($fechaFormato,'d');
 							$estatusTarde=checaDia($fechaFormato,'t');
@@ -102,6 +102,22 @@
 		</table>
 		<table align="center">
 			<tr>
+				<td>
+					<label class="checkbox-inline"><input id="sillasCheck" type="checkbox" value="" onclick="clickOpcion()">Sillas y Mesas $250</label>
+					<label class="checkbox-inline"><input id="sonidoCheck" type="checkbox" value="" onclick="clickOpcion()">Sonido $150</label>
+					<label class="checkbox-inline"><input id="cañonCheck" type="checkbox" value="" onclick="clickOpcion()">Cañon $150</label> 	
+				</td>
+				
+			</tr>
+			<tr>
+				<td style="text-align: center;">
+					<label id="signo">Total: $</label>
+					<label id="precio"></label>
+				</td>
+			</tr>
+		</table>
+		<table align="center">
+			<tr>
 				<td><input type="submit" name="btnConfirm" value="Confirmar" onclick="enviarForma()"></td>
 				<td><input type="button" name="btnConfirm" value="Cancelar" onclick="cancelarForma()"></td>
 			</tr>
@@ -129,6 +145,42 @@
 				}	
 				function cancelarForma(){
 					top.location.href="../";
+				}
+				function clickOpcion(){
+					var opcionSelect=$('#selectTurno').val();
+					var precio=0;
+					switch(opcionSelect){
+						case 'd':
+							precio+=1000;
+						break;
+						case 't':
+							precio+=1100;
+						break;
+						case 'n':
+							precio+=1200;
+						break;
+						case 'm':
+							precio+=2000;
+						break;
+						case 'a':
+							precio+=2200;
+						break;
+						case 'c':
+							precio+=3000;
+						break;
+					}
+					if($('#sillasCheck').is(':checked')){
+						precio+=250;	
+					}
+					if($('#sonidoCheck').is(':checked')){
+						precio+=250;	
+					}
+					if($('#cañonCheck').is(':checked')){
+						precio+=250;	
+					}
+					
+					$('#precio').html(precio);
+
 				}
 			</script>
 
