@@ -12,7 +12,7 @@
 	$dayBeg=date("w", $fecha);
 
 	?>
-		<table id="calendar" border="1" align="center" style="width: 80%;">
+		<table id="calendar" border="1" align="center" style="width: 70%; font-size: 10px;" >
 			<tr id="month">
 				<th style="text-align: center; " onclick="mesAtras()"> < </th>
 				<th colspan="5" style="text-align: center;">
@@ -73,11 +73,11 @@
 								$diaEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
 							break;
 							case 'A':
-								$diaEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$diaEstatus="<div class=\"APARTADO\">Apartado</div>";
 								$conta++;
 							break;
 							case 'O':
-								$diaEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$diaEstatus="<div class=\"OCUPADO\">Ocupado</div>";
 								$conta++;
 							break;
 						}
@@ -87,11 +87,11 @@
 								$tardeEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
 							break;
 							case 'A':
-								$tardeEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$tardeEstatus="<div class=\"APARTADO\">Apartado</div>";
 								$conta++;
 							break;
 							case 'O':
-								$tardeEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$tardeEstatus="<div class=\"OCUPADO\">Ocupado</div>";
 								$conta++;
 							break;
 						}
@@ -101,11 +101,11 @@
 								$nocheEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
 							break;
 							case 'A':
-								$nocheEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$nocheEstatus="<div class=\"APARTADO\">Apartado</div>";
 								$conta++;
 							break;
 							case 'O':
-								$nocheEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$nocheEstatus="<div class=\"OCUPADO\">Ocupado</div>";
 								$conta++;
 							break;
 						}
@@ -153,11 +153,11 @@
 								$diaEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
 							break;
 							case 'A':
-								$diaEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$diaEstatus="<div class=\"APARTADO\">Apartado</div>";
 								$conta++;
 							break;
 							case 'O':
-								$diaEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$diaEstatus="<div class=\"OCUPADO\">Ocupado</div>";
 								$conta++;
 							break;
 						}
@@ -167,11 +167,11 @@
 								$tardeEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
 							break;
 							case 'A':
-								$tardeEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$tardeEstatus="<div class=\"APARTADO\">Apartado</div>";
 								$conta++;
 							break;
 							case 'O':
-								$tardeEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$tardeEstatus="<div class=\"OCUPADO\">Ocupado</div>";
 								$conta++;
 							break;
 						}
@@ -181,11 +181,11 @@
 								$nocheEstatus="<div class=\"DISPONIBLE\">&nbsp;</div>";
 							break;
 							case 'A':
-								$nocheEstatus="<div class=\"APARTADO\">&nbsp;</div>";
+								$nocheEstatus="<div class=\"APARTADO\">Apartado</div>";
 								$conta++;
 							break;
 							case 'O':
-								$nocheEstatus="<div class=\"OCUPADO\">&nbsp;</div>";
+								$nocheEstatus="<div class=\"OCUPADO\">Ocupado</div>";
 								$conta++;
 							break;
 						}
@@ -205,5 +205,5 @@
 			?>
 
 		</table>
-
+		<?php
 ?>

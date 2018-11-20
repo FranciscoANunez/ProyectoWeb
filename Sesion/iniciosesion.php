@@ -6,6 +6,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <style type="text/CSS">
         h1{ color: red} .color{color: blue} .fuente{font-family: arial; font-size: 20px;}
+        label{position: absolute; color: red;font-style: italic;font-size: 15;  }
     </style>
 </head>
 <body onload="javascript: document.getElementById('txtUsuario').focus();">
@@ -58,6 +59,9 @@
                     <input type="button" value="Cancelar" id="btnCancelar" onclick="limpiaaFormulario()">
                 </td>
             </tr>
+            
+        </table>
+        <table align="center">
             <tr height="60px">
                 <td colspan="2">
                     <font color="red">
@@ -103,7 +107,7 @@
             });
         }
     </script>
-    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jQuery.js"></script>
     <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </body>
 </html>

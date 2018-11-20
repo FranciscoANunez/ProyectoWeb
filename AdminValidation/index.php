@@ -32,18 +32,17 @@
   		</thead>
   		<tbody>
   			<?php
-  				$dia=date("Y-n-d");
   				$user=$_SESSION['user'];
-  				$strQuery="SELECT dia,estatus,idTurno,recibo,idRenta FROM rentas WHERE dia >= '$dia' AND usuario = '$user'";
+  				$strQuery="SELECT idRenta,usuario,dia,idTurno,recibo FROM rentas WHERE recibo IS NOT NULL AND estatus='A'";
 				$result=$conn->query($strQuery);
 
 				if($result->num_rows>0){
 					while($row=$result->fetch_array(MYSQLI_NUM)){
 						?>
 							<tr>
-		      					<th scope="row"><?php echo "$row[0]"; ?></th>
-		      					<th><?php if($row[1]=='A'){echo "Apartado";}else{ echo "Pagado";}; ?></th>
-						      	<th><?php switch($row[2]){
+		      					<th scope="row"><?php echo "$row[1]"; ?></th>
+		      					<th> <?php echo "$row[2]"; ?> </th>
+		      					<th><?php switch($row[3]){
 						      		case 'd':
 						      			echo "Mañana";
 						      		break;
@@ -63,42 +62,30 @@
 						      			echo "Dia Completo";
 						      		break;
 						      	}?></th>
-						      	<th> 
-						      		
-						      		<form action="subir.php" method="POST" enctype="multipart/form-data">
-						      			<input type="hidden" name="txtRentaId" value="<?php echo "$row[4]"; ?>">
-						      			<input type="hidden" name="txtRentaName" value="<?php echo "$row[0]-$row[2]"; ?>">
-						      			<?php
-						      				$botonValue="Subir";
-						      				if(is_null($row[3])){
-							      				?>
-							      					<input type="file" name="image" class="btn btn-outline-info" accept="image/gif, image/jpeg, image/png">
-							      					<input type="submit" name="btnsubir" value="<?php echo "$botonValue"; ?>">
-							      				<?php		
-							      			}else{
-							      				?>
-							      				<input type="button" class="btn btn-outline-secondary" value="Recibo Capturado" disabled>
-							      				<?php
-							      			}
-						      			?>
-
-						      			
-						      			
-						      		</form>
+						      	<th>
+						      		<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal<?php echo "$row[0]"; ?>">Ver Recibo</button>
+						      		<div class="modal fade" id="myModal<?php echo "$row[0]"; ?>" role="dialog">
+    									<div class="modal-dialog">
+								    	<!-- Modal content-->
+											<div class="modal-content">
+        										<div class="modal-header">
+          											<button type="button" class="close" data-dismiss="modal">&times;</button>
+          											<h4 class="modal-title">Recibo</h4>
+        										</div>
+        										<div class="modal-body">
+          											<img width="100%" src="<?php echo "$row[4]";?>">
+        										</div>
+        										<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        										</div>
+     										</div>
+    									</div>
+  									</div>
 						      	</th>
-						      		<?php  
-						      			$dia=strtotime($row[0]);
-						      			$diaHoy=strtotime(date("Y-n-d"));
-						      			
-						      			$extra="";
-						      			
-						      			if($dia-86400 <= $diaHoy){
-						      				$extra="disabled";
-						      			}
-						      		?>
+						      	<th><button type="button" class="btn btn-outline-success" onclick="validarRenta(<?php echo "$row[0]"; ?>)">Validar</button></th>
+						      	<th> <button type="button" class="btn btn-outline-danger" onclick="cancelarRenta(<?php echo "$row[0]"; ?>)">Rechazar</button></th>
+
 						      	
-						      	
-						      	<th> <button type="button" class="btn btn-outline-danger" onclick="cancelarRenta(<?php echo "$row[4]";  ?>)" <?php echo "$extra"; ?>>Cancelar</button></th>
 		      				</tr>
 						<?php
 					}
@@ -106,7 +93,7 @@
 				}else{
 					?>
 						<tr>
-		      				<th scope="row" colspan="5">Sin rentas pendientes</th>
+		      				<th scope="row" colspan="6">Sin rentas por validar</th>
 		      		    </tr>
 					<?php
 				}
@@ -116,11 +103,11 @@
 	<script type="text/javascript" src="../js/jQuery.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
 	<script>
-		function subirRecibo(){
-			top.frames[1].location.href="./subir.php";
+		function validarRenta(id){
+			top.frames[1].location.href="./validar.php?id="+id;
 		}
 		function cancelarRenta(id){
-			top.frames[1].location.href="./cancelarRecibo.php?id="+id;
+			top.frames[1].location.href="./cancelar.php?id="+id;
 		}
 	</script>
 </body>

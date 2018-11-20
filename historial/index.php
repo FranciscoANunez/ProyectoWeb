@@ -20,11 +20,6 @@
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-
 	<table class="table table-striped ">
   		<thead class="thead-dark">
     		<tr>
@@ -45,8 +40,38 @@
 						?>
 							<tr>
 		      					<th scope="row"><?php echo "$row[0]"; ?></th>
-		      					<th><?php echo "$row[1]"; ?></th>
-						      	<th><?php echo "$row[2]"; ?></th>
+		      					<th><?php 
+		      						if ($row[1]=='O') {
+		      							echo "Pagado";
+		      						}else if($row[1]=='A'){
+		      							echo "Fecha no Pagada";
+		      						}else{
+		      							echo "Sin Registro";
+		      						}
+		      						
+		      					?></th>
+						      	<th><?php 
+						      		switch($row[2]){
+							      		case 'd':
+							      			echo "Mañana";
+							      		break;
+							      		case 't':
+								      		echo "Tarde";	
+							      		break;
+							      		case 'n':
+							      			echo "Noche";
+							      		break;
+							      		case 'm':
+							      			echo "Mañana y Tarde";
+							      		break;
+							      		case 'a':
+							      			echo "Tarde y Noche";
+							      		break;
+							      		case 'c':
+							      			echo "Dia Completo";
+							      		break;
+							      	}
+								?></th>
 		      				</tr>
 						<?php
 					}
