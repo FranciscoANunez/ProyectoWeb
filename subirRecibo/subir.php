@@ -1,4 +1,8 @@
 <?php
+   session_cache_limiter('private');
+
+   session_cache_expire(0);
+
 	session_start();
 	include_once "../scripts/BDConnect.php";
    if(isset($_FILES['image'])){

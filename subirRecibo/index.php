@@ -1,4 +1,9 @@
 <?php  
+
+	session_cache_limiter('private');
+
+	session_cache_expire(0);
+
 	session_start();
 	include_once "../scripts/BDConnect.php";
 	if (!isset($_SESSION['user'])) {
@@ -17,6 +22,14 @@
 <head>
 	<title></title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/site-demos.css">
+	 <style type="text/CSS">
+        label{position: absolute;color: red;font-style: italic;font-size: 15;}
+    </style>
+    <script src="../js/jquery-1.11.1.min.js"></script>
+	<script src="../js/jquery.validate.min.js"></script>
+	<script src="../js/additional-methods.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
 </head>
 <body>
 	<table class="table table-striped ">
@@ -40,11 +53,13 @@
   				$user=$_SESSION['user'];
   				$strQuery="SELECT dia,estatus,idTurno,recibo,idRenta,usuario FROM rentas WHERE dia >= '$dia'";
   				if($_SESSION['type']!='A'){
-  						$strQuery+="AND usuario = '$user'";
+  						$strQuery="$strQuery AND usuario = '$user'";
+
   				}
 				$result=$conn->query($strQuery);
 
 				if($result->num_rows>0){
+					$numeroDeRenglones=0;
 					while($row=$result->fetch_array(MYSQLI_NUM)){
 						?>
 							<tr>
@@ -77,7 +92,8 @@
 						      	}?></th>
 						      	<th> 
 						      		
-						      		<form action="subir.php" method="POST" enctype="multipart/form-data">
+						      		<form id="form<?php echo "$numeroDeRenglones"; ?>" action="subir.php" method="POST" enctype="multipart/form-data">
+
 						      			<input type="hidden" name="txtRentaId" value="<?php echo "$row[4]"; ?>">
 						      			<input type="hidden" name="txtRentaName" value="<?php echo "$row[0]-$row[2]"; ?>">
 						      			<?php
@@ -85,17 +101,45 @@
 						      				if($row[5] == $_SESSION['user']){
 						      					if(is_null($row[3]) ){
 							      				?>
-							      					<input type="file" name="image" class="btn btn-outline-info" accept="image/gif, image/jpeg, image/png">
+							      					<input type="file" name="image" class="btn btn-outline-info" accept="image/gif, image/jpeg, image/png" required>
 							      					<input type="submit" name="btnsubir" value="<?php echo "$botonValue"; ?>">
+
+							      					</form>
+							      					<script>
+							      						$('#form<?php echo "$numeroDeRenglones"; ?>').validate();
+							      					</script>
 							      				<?php		
 								      			}else{
 								      				?>
-								      				<input type="button" class="btn btn-outline-secondary" value="Recibo Capturado" disabled>
+								      				</form>
+								      				<button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal<?php echo "$numeroDeRenglones"; ?>">Ver Recibo</button>
+								      				<div class="modal fade" id="myModal<?php echo "$numeroDeRenglones"; ?>" role="dialog">
+    													<div class="modal-dialog">
+								    						<!-- Modal content-->
+															<div class="modal-content">
+        														<div class="modal-header">
+          															<button type="button" class="close" data-dismiss="modal">&times;</button>
+          															<h4 class="modal-title">Recibo</h4>
+        														</div>
+        														<div class="modal-body">
+          															<img width="100%" src="<?php echo "$row[3]";?>">
+        														</div>
+        														<div class="modal-footer">
+																	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        														</div>
+     														</div>
+    													</div>
+  													</div>
 								      				<?php
+								      					if($row[1]=='A'){
+								      				?>
+								      				<button class="btn btn-outline-danger" onclick="cancelarRecibo(<?php echo "$row[4]"; ?>)">Cancelar Recibo</button>
+								      				<?php
+								      				}
 								      			}
 						      				}
 						      			?>
-						      		</form>
+						      		
 						      	</th>
 						      		<?php  
 						      			$dia=strtotime($row[0]);
@@ -112,9 +156,10 @@
 						      		?>
 						      	
 						      	
-						      	<th> <button type="button" class="btn btn-outline-danger" onclick="cancelarRenta(<?php echo "$row[4]";  ?>)" <?php echo "$extra"; ?>>Cancelar</button></th>
+						      	<th> <button type="button" class="btn btn-outline-danger" onclick="cancelarRenta(<?php echo "$row[4]";  ?>)" <?php echo "$extra"; ?>>Cancelar rentas</button></th>
 		      				</tr>
 						<?php
+						$numeroDeRenglones++;
 					}
 					
 				}else{
@@ -127,8 +172,7 @@
   			?>
   	</tbody>
 </table>
-	<script type="text/javascript" src="../js/jQuery.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	
 	<script>
 		function subirRecibo(){
 			top.frames[1].location.href="./subir.php";
@@ -136,6 +180,10 @@
 		function cancelarRenta(id){
 			top.frames[1].location.href="./cancelarRecibo.php?id="+id;
 		}
+		function cancelarRecibo(id){
+			top.frames[1].location.href="./cancelar.php?id="+id;
+		}
+
 	</script>
 </body>
 </html>

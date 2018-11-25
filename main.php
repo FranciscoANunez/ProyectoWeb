@@ -1,3 +1,6 @@
+<?php  
+	include_once "./scripts/BDConnect.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +36,33 @@
 	<center>
 	<div id="carouselAuditorio" class="carousel slide" data-ride="carousel">
   		<div class="carousel-inner" >
-    		<div class="carousel-item active" style="height: 200px;">
+  			<?php  
+  				$strQuery="SELECT * FROM imagenesCarrousel";
+  				$result=$conn->query($strQuery);
+
+				if($result->num_rows>0){
+					$row=$result->fetch_array(MYSQLI_NUM);
+					?>
+						<div class="carousel-item active" style="height: 200px;">
+      						<img class="d-block w-50 mh-100" src="<?php echo "$row[0]"; ?>" alt="Slide">
+    					</div>
+					<?php
+					while($row=$result->fetch_array(MYSQLI_NUM)){
+						?>
+							<div class="carousel-item" style="height: 200px;">
+      							<img class="d-block w-50 mh-100" src="<?php echo "$row[0]"; ?>" alt="Slide">
+    						</div>
+						<?php
+					}
+				}else{
+					?>
+						<h1>Sin Imaganes</h1>
+					<?php
+				}
+
+  			?>
+
+    		<!--<div class="carousel-item active" style="height: 200px;">
       			<img class="d-block w-50 mh-100" src="img/auditorio1.jpg" alt="First slide">
     		</div>
     		<div class="carousel-item" style="height: 200px;">
@@ -41,7 +70,7 @@
     		</div>
 		    <div class="carousel-item" style="height: 200px;">
       			<img class="d-block w-50 mh-100" src="img/auditorio3.jpg" alt="Third slide">
-    		</div>
+    		</div>-->
   		</div>
 	</div>
 	</center>
