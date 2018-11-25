@@ -23,7 +23,7 @@ $correo=$conn->real_escape_string($_POST['txtCorreo']);
      if(!$conn->query($strQry)){
          die ('Error: Usuario ya existe');
      }
-    session_start();
+    //session_start();
     $_SESSION['user']=$usuario;
     $_SESSION['type']=$tipo;
     $_SESSION['mail']=$correo;
