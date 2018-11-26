@@ -41,6 +41,9 @@
 		function editarImagenes(){
 			top.frames[1].location.href="./Editar/Imagenes/";
 		}
+		function usuario(){
+			top.frames[1].location.href="./changeUser/";
+		}
 	</script>
 </head>
 <body>
@@ -54,7 +57,7 @@
 					if(isset($_SESSION['user'])){
 						$usuario=$_SESSION['user'];
 					?>
-						<a class="nav-link float-right" style="color: #000000;"> <?php echo "$usuario" ;?></a>
+						<a class="nav-link float-right" style="color: #000000;" href="#" onclick="usuario()"> <?php echo "$usuario" ;?></a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="closeSession()">Cerrar Sesion</a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="misFechas()">Mis Fechas</a>
 						<a class="nav-link float-right" style="color: #ffffff;" href="#" onclick="historial()">Historial</a>

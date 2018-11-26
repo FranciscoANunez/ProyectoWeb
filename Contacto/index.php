@@ -52,6 +52,12 @@
 				//direccion
 				echo "<tr><th>Tel.: $row[2]</th></tr>";
 				echo "<tr><th>Email.: $row[3]</th></tr>";
+				if($row[4]!="" && $row[5]!=""){
+					echo "<tr><th>Cuenta: $row[4] $row[5]</th></tr>";
+				}
+				if($row[6]!="" && $row[7]!=""){
+					echo "<tr><th>Cuenta: $row[6] $row[7]</th></tr>";
+				}
 			}
 		?>	
 

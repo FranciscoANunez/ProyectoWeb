@@ -6,9 +6,10 @@
 	$fecha=$_POST['txtFecha'];
 	$turno=$_POST['selectTurno'];
 	$usuario=$_SESSION['user'];
+	$precio=$_POST['txtPrecio'];
 
 
-	$strQuery="INSERT INTO rentas VALUES(NULL,'$usuario','$fecha','A',NULL,NULL,'$turno')";
+	$strQuery="INSERT INTO rentas VALUES(NULL,'$usuario','$fecha','A',NULL,NULL,'$turno',$precio)";
 	
 	$result=$conn->query($strQuery);
 

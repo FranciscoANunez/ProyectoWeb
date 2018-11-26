@@ -46,6 +46,23 @@
 				<td><input type="text" id="txtAdminEmail" name="txtAdminEmail" placeholder="Ej. admin@mail.com" value="<?php echo "$row[3]"; ?>"></td>
 			</tr>
 			<tr>
+				<td>Banco 1: </td>
+				<td><input type="text" id="txtAdminCuentaBanco1" name="txtAdminCuentaBanco1" placeholder="Ej. Bancomer" value="<?php echo "$row[4]"; ?>"></td>
+			</tr>
+			<tr>
+				<td>Cuenta 1: </td>
+				<td><input type="text" id="txtAdminCuentaNumero1" name="txtAdminCuentaNumero1" placeholder="Ej. 485735748373" value="<?php echo "$row[5]"; ?>"></td>
+			</tr>
+			<tr>
+				<td>Banco 2: </td>
+				<td><input type="text" id="txtAdminCuentaBanco2" name="txtAdminCuentaBanco2" placeholder="Ej. Bancomer" value="<?php echo "$row[6]"; ?>"></td>
+			</tr>
+			<tr>
+				<td>Cuenta 2: </td>
+				<td><input type="text" id="txtAdminCuentaNumero2" name="txtAdminCuentaNumero2" placeholder="Ej. 485735748373" value="<?php echo "$row[7]"; ?>"></td>
+			</tr>
+
+			<tr>
 				<td style="text-align: center;">
 					<input type="submit" class="btn btn-outline-info" name="btnDatosAdmin" id="btnDatosAdmin" value="Guardar" onclick="validaForma()">
 				</td>
@@ -70,11 +87,16 @@
                     $("#validaForm").validate({
                         rules: {txtNombreAdmin:"required",
                                 txtNumeroAdmin: "required",
-                                txtAdminEmail: "required"
+                                txtAdminEmail: "required",
+                                txtAdminCuentaBanco1: "required",
+                                txtAdminCuentaNumero1: "required"
                             	},
                          messages: {txtNombreAdmin:"Se requiere este dato",
                                 txtNumeroAdmin: "Se requiere este dato",
-                                txtAdminEmail: "Se requiere este dato"},
+                                txtAdminEmail: "Se requiere este dato",
+                                txtAdminCuentaBanco1: "Se requiere este dato",
+                                txtAdminCuentaNumero1: "Se requiere este dato"
+                            },
                             submitHandler: function(form){
                                 $.ajax({
                                     url: validaForm.action, 

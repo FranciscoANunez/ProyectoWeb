@@ -43,15 +43,17 @@
   				?>
 			    <th scope="col">Estatus</th>
 			    <th scope="col">Horario</th>
+			    <th scope="col">Precio</th>
 			    <th scope="col">Subir Recibo</th>
 			    <th scope="col">Cancelar</th>
+			    
     		</tr>
   		</thead>
   		<tbody>
   			<?php
   				$dia=date("Y-n-d");
   				$user=$_SESSION['user'];
-  				$strQuery="SELECT dia,estatus,idTurno,recibo,idRenta,usuario FROM rentas WHERE dia >= '$dia'";
+  				$strQuery="SELECT dia,estatus,idTurno,recibo,idRenta,usuario,precio FROM rentas WHERE dia >= '$dia'";
   				if($_SESSION['type']!='A'){
   						$strQuery="$strQuery AND usuario = '$user'";
 
@@ -70,6 +72,7 @@
   									}
 		      					?>
 		      					<th><?php if($row[1]=='A'){echo "Apartado";}else{ echo "Pagado";}; ?></th>
+
 						      	<th><?php switch($row[2]){
 						      		case 'd':
 						      			echo "Mañana";
@@ -90,6 +93,7 @@
 						      			echo "Dia Completo";
 						      		break;
 						      	}?></th>
+						      	<th>$<?php echo"$row[6]";?></th>
 						      	<th> 
 						      		
 						      		<form id="form<?php echo "$numeroDeRenglones"; ?>" action="subir.php" method="POST" enctype="multipart/form-data">
@@ -157,6 +161,7 @@
 						      	
 						      	
 						      	<th> <button type="button" class="btn btn-outline-danger" onclick="cancelarRenta(<?php echo "$row[4]";  ?>)" <?php echo "$extra"; ?>>Cancelar rentas</button></th>
+
 		      				</tr>
 						<?php
 						$numeroDeRenglones++;

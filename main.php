@@ -33,7 +33,20 @@
 	</style>
 </head>
 <body onload="calendarioFunction()">
+	
 	<center>
+		<?php
+		$consultaNombre="SELECT nombre FROM datosAuditorio";
+		$resultado=$conn->query($consultaNombre);
+		$renglon=$resultado->fetch_array(MYSQLI_NUM);
+		$nombreLugar=$renglon[0];
+
+		?>	
+			<h2><?php echo "$nombreLugar"; ?></h2>
+		<?php
+
+	?>
+
 	<div id="carouselAuditorio" class="carousel slide" data-ride="carousel">
   		<div class="carousel-inner" >
   			<?php  
